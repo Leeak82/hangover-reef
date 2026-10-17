@@ -1,0 +1,13 @@
+import { chromium } from 'playwright-core';
+const b = await chromium.launch({ executablePath: '/usr/bin/google-chrome', args: ['--use-angle=swiftshader', '--enable-unsafe-swiftshader', '--ignore-gpu-blocklist'] });
+const p = await b.newPage({ viewport: { width: 1600, height: 900 } });
+p.on('console', m => console.log('C', m.type(), m.text().slice(0, 200)));
+p.on('requestfailed', r => console.log('FAIL', r.url()));
+await p.goto('http://localhost:8787/');
+await p.waitForSelector('.auth');
+await p.fill('input[type=email]', `d${Date.now()}@x.com`); await p.fill('input[type=password]', 'partyhard123'); await p.check('#age'); await p.click('button[type=submit]');
+await p.waitForSelector('.lobby');
+await p.click('.room.happy');
+await p.waitForTimeout(8000);
+console.log(await p.evaluate(() => ({ g: !!window.__hr.game, canvas: !!document.querySelector('canvas'), ui: document.getElementById('ui').innerHTML.slice(0, 200), webgl: !!document.createElement('canvas').getContext('webgl2') })));
+await b.close();
