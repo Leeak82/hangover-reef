@@ -92,8 +92,8 @@ input { font-family: var(--body); }
 .close { position: absolute; top: 10px; right: 12px; width: 40px; height: 40px; border-radius: 50%; font-size: 22px; background: linear-gradient(180deg, #ff6b7d, #c3112c); box-shadow: 0 0 0 2px #ffd34d, 0 3px 0 #6d0010; z-index: 2; }
 .packs { display: grid; grid-template-columns: repeat(5, minmax(120px, 1fr)); gap: 14px; }
 .pack { position: relative; border-radius: 18px; padding: 14px 10px 12px; text-align: center; background: linear-gradient(180deg, #1a5fb4, #0b2f6b); box-shadow: 0 0 0 2px #ffd34d, inset 0 0 20px rgba(80,200,255,.3); display: flex; flex-direction: column; align-items: center; gap: 4px; }
-.pack .stack { height: 70px; width: 100%; display: grid; place-items: center; }
-.pack .stack img { max-height: 100%; max-width: 90%; filter: drop-shadow(0 4px 5px rgba(0,0,0,.5)); }
+.pack .stack { height: 70px; width: 100%; display: flex; align-items: center; justify-content: center; }
+.pack .stack img { height: 70px; width: 90%; object-fit: contain; filter: drop-shadow(0 4px 5px rgba(0,0,0,.5)); }
 .pack:nth-child(5) .stack img { max-width: 100%; }
 .pack .amt { font-family: var(--font); font-size: 24px; color: var(--gold2); text-shadow: 0 2px 0 #6b3500; }
 .pack .bonus { font-size: 12px; font-weight: 900; color: #7dff6a; min-height: 16px; }
@@ -152,7 +152,6 @@ input { font-family: var(--body); }
 @media (orientation: portrait) and (max-width: 900px) { #rotate { display: flex; } }
 
 @media (max-height: 520px) {
-  .pack .stack { height: 44px; }
   .lobby .logo { width: min(16vw, 200px); margin-top: -36px; }
   .topbar { padding-top: max(6px, env(safe-area-inset-top)); }
   .pill { height: 38px; font-size: 19px; } .iconbtn { width: 40px; height: 40px; }
@@ -162,7 +161,7 @@ input { font-family: var(--body); }
   .room .req { font-size: 11px; margin-bottom: 5px; min-height: 0; } .room .gold-btn { font-size: 16px; padding: .3em 1.5em; }
   .lobby-actions { margin-top: 12px; gap: 14px; } .lobby-actions .gold-btn { font-size: 13px; padding: .45em 1.1em; }
   .lobby .fineprint { font-size: 10px; }
-  .panel { padding: 18px; } .packs { gap: 8px; } .pack .stack { font-size: 24px; height: 34px; }
+  .panel { padding: 18px; } .packs { gap: 8px; } .pack .stack, .pack .stack img { height: 46px; }
   .auth { flex-direction: row; flex-wrap: wrap; justify-content: safe center; align-content: safe center; gap: 4px 4vw; padding: 8px; }
   .auth .logo { width: 34vw; } .auth .panel { width: min(400px, 52vw); padding: 14px 20px; } .auth .panel h2 { font-size: 24px; margin-bottom: 8px; }
   .auth .fineprint { flex-basis: 100%; font-size: 11px; } .switch { margin-top: 8px; } .check { margin: 2px 0 10px; font-size: 13px; }
